@@ -45,6 +45,7 @@ describe("SpecificationRewriter", () => {
     ];
 
     jest.spyOn(ctx.octokit, "paginate").mockResolvedValue(fakeComments);
+    jest.spyOn(specRewriter, "getUserRoles").mockResolvedValue(["contributor"]);
   });
 
   describe("performSpecRewrite", () => {
