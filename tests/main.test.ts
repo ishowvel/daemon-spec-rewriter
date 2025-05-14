@@ -132,11 +132,7 @@ describe("SpecificationRewriter", () => {
     ];
     jest.spyOn(ctx.octokit, "paginate").mockResolvedValue(fakeComments);
 
-    const expectedConversation = [
-      "issue spec", // Original issue body is always first
-      "test (contributor): Comment 2 Included", // Formatted comment
-      "test (contributor): Comment 3 Included", // Formatted comment
-    ];
+    const expectedConversation = ["issue spec", "test (contributor): Comment 3 Included", "test (contributor): Comment 2 Included"];
 
     const result = await specRewriter.fetchIssueConversation(ctx, {
       maxCompletionTokens: 1000,
