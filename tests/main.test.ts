@@ -98,7 +98,7 @@ describe("SpecificationRewriter", () => {
         .spyOn(ctx.adapters.openRouter.completions, "getModelTokenLimits")
         .mockReturnValue(Promise.resolve({ contextLength: 50000, maxCompletionTokens: 5000 }));
 
-      const mockConversation = ["issue spec", "user: test"];
+      const mockConversation = ["issue spec", "user (contributor): test"];
 
       const createCompletionSpy = jest
         .spyOn(ctx.adapters.openRouter.completions, "createCompletion")
@@ -134,8 +134,8 @@ describe("SpecificationRewriter", () => {
 
     const expectedConversation = [
       "issue spec", // Original issue body is always first
-      "test: Comment 2 Included", // Formatted comment
-      "test: Comment 3 Included", // Formatted comment
+      "test (contributor): Comment 2 Included", // Formatted comment
+      "test (contributor): Comment 3 Included", // Formatted comment
     ];
 
     const result = await specRewriter.fetchIssueConversation(ctx, {
